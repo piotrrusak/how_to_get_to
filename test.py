@@ -3,10 +3,10 @@ from lines import starting_time, line
 
 n = 10
 
-V = []
+V = set()
 for i in range(n):
     for j in range(n):
-        V.append((i,j))
+        V.add((i,j))
 
 E = set()
 for x, y in V:
