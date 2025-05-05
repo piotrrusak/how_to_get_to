@@ -29,7 +29,30 @@ for l in range(len(line)):
         v, f = line[l][i]
         if f == 1:
             for st in starting_time[l]:
-                H[v].append((l, st + i))
+                H[v].append((l, st + i, ))
 
 for h in H.items():
     print(h)
+
+graph = {}
+# ((u1, v1, t1), (u2, v2, t2))
+for key in H.keys():
+    for i in range(1, len(H[key])):
+        _, t1 = H[key][i-1]
+        _, t2 = H[key][i]
+        graph[((key, t1), (key, t2))] = 1
+
+for i in range(len(line)):
+    for st in starting_time[i]:
+        tail = 0
+        head = 1
+        while head < len(line[i]):
+            u, _ = line[i][tail]
+            v, f = line[i][head]
+            if f == 1:
+                graph[(u, st+tail), (v, st+head)] = 1
+                tail = head
+            head += 1
+
+for key in graph.keys():
+    print(key)
