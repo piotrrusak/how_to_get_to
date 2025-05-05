@@ -80,11 +80,11 @@ L4 = [ # Yellow
     ((2, 0), 1),
 ]
 
-starting_time = [
+starting_times = [
     [0, 5, 10],
     [0, 6, 12],
     [0, 7, 14],
     [0, 8, 16],
 ]
 
-line = [L1, L2, L3, L4]
+lines = [L1, L2, L3, L4]

@@ -1,9 +1,7 @@
 import random
-from typing import List, Dict, Tuple, Set
-from collections import defaultdict
+from typing import List, Tuple, Set
 
-
-class AntColonyTimeDependent:
+class AntColony:
     def __init__(self, graph, n_ants, n_iterations, alpha, beta, evaporation_rate, q):
         self.graph = graph
 
@@ -25,12 +23,13 @@ class AntColonyTimeDependent:
         best_path = None
         best_length = float('inf')
 
-        print(self.n_iterations)
-        for iteration in range(self.n_iterations):
+        i = 0
+        while i < self.n_iterations or best_path is None:
             all_paths = self.generate_paths(start, end)
 
             if not all_paths:
-                print(f"Iteration {iteration + 1}: No path found")
+                print(f"Iteration {i + 1}: No path found")
+                i += 1
                 continue
 
             self.update_pheromones(all_paths)
@@ -41,7 +40,9 @@ class AntColonyTimeDependent:
                 best_path = current_best_path
                 best_length = current_best_length
 
-            print(f"Iteration {iteration + 1}: Best length = {best_length}")
+            print(f"Iteration {i + 1}: Best length = {best_length}")
+
+            i += 1
 
         if best_path is None:
             raise ValueError(f"No path found from {start} to {end}")
@@ -106,6 +107,7 @@ class AntColonyTimeDependent:
 
     def calculate_path_length(self, path: List[Tuple[int, int]]) -> float:
         return path[-1][1] - path[0][1]
+
     def update_pheromones(self, all_paths: List[Tuple[List[Tuple[int, int]], float]]):
         for edge in self.pheromones.keys():
             self.pheromones[edge] *= (1.0 - self.evaporation_rate)
@@ -116,62 +118,3 @@ class AntColonyTimeDependent:
                 edge = (path[i], path[i + 1])
                 if edge in self.pheromones:
                     self.pheromones[edge] += pheromone_amount
-
-
-def create_time_expanded_graph():
-    from lines import starting_time, line
-
-    n = 10
-    V = set((i, j) for i in range(n) for j in range(n))
-
-    graph = {}
-    H = defaultdict(list)
-
-    for l in range(len(line)):
-        for i in range(len(line[l])):
-            v, f = line[l][i]
-            if f == 1:
-                for st in starting_time[l]:
-                    H[v].append((l, st + i))
-
-    for key in H.keys():
-        H[key].sort(key=lambda x: x[1])
-        for i in range(1, len(H[key])):
-            _, t1 = H[key][i - 1]
-            _, t2 = H[key][i]
-            graph[((key, t1), (key, t2))] = t2 - t1
-
-    for i in range(len(line)):
-        for st in starting_time[i]:
-            tail = 0
-            head = 1
-            while head < len(line[i]):
-                u, _ = line[i][tail]
-                v, f = line[i][head]
-                if f == 1:
-                    graph[((u, st + tail), (v, st + head))] = (st+head)-(st+tail)
-                    tail = head
-                head += 1
-
-    return graph
-
-
-if __name__ == "__main__":
-
-    time_expanded_graph = create_time_expanded_graph()
-
-    aco = AntColonyTimeDependent(time_expanded_graph, n_ants=5, n_iterations=200, alpha=1.0, beta=5.0, evaporation_rate=0.3, q=500)
-
-    start_node = ((0, 0), 0)
-    end_node = ((9, 2), 28)
-
-    try:
-        best_path, best_length = aco.run(start=start_node, end=end_node)
-
-        print("\nBest path found:")
-        for point in best_path:
-            print(point)
-        print(f"Path length: {best_length}")
-
-    except ValueError as e:
-        print(e)
