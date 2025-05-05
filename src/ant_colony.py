@@ -1,5 +1,5 @@
 import random
-from typing import List, Tuple, Set
+from typing import Tuple, Set
 
 class AntColony:
     def __init__(self, graph, n_ants, n_iterations, alpha, beta, evaporation_rate, q):
@@ -49,7 +49,7 @@ class AntColony:
 
         return best_path, best_length
 
-    def generate_paths(self, start: Tuple[int, int], end: Tuple[int, int]) -> List[Tuple[List[Tuple[int, int]], float]]:
+    def generate_paths(self, start, end):
         all_paths = []
         for _ in range(self.n_ants):
             path = self.generate_path(start, end)
@@ -58,12 +58,12 @@ class AntColony:
                 all_paths.append((path, length))
         return all_paths
 
-    def generate_path(self, start: Tuple[int, int], end: Tuple[int, int]) -> List[Tuple[int, int]]:
-        path = [start]
+    def generate_path(self, start, end):
+        path = [(start, 0)]
         visited = set([start])
-        current = start
-        u, _ = start
-        v, _ = end
+        current = (start, 0)
+        u = start
+        v = end
 
         while u != v:
             neighbors = self.get_neighbors(current)
@@ -98,17 +98,17 @@ class AntColony:
 
         return path
 
-    def get_neighbors(self, node: Tuple[int, int]) -> List[Tuple[int, int]]:
+    def get_neighbors(self, node):
         neighbors = []
         for edge in self.graph.keys():
             if edge[0] == node:
                 neighbors.append(edge[1])
         return neighbors
 
-    def calculate_path_length(self, path: List[Tuple[int, int]]) -> float:
+    def calculate_path_length(self, path):
         return path[-1][1] - path[0][1]
 
-    def update_pheromones(self, all_paths: List[Tuple[List[Tuple[int, int]], float]]):
+    def update_pheromones(self, all_paths):
         for edge in self.pheromones.keys():
             self.pheromones[edge] *= (1.0 - self.evaporation_rate)
 

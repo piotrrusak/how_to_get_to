@@ -13,8 +13,8 @@ if __name__ == "__main__":
 
     aco = AntColony(state_graph, n_ants=5, n_iterations=200, alpha=1.0, beta=5.0, evaporation_rate=0.3, q=500)
 
-    start_node = ((0, 0), 0)
-    end_node = ((9, 2), 28)
+    start_node = (0, 0)
+    end_node = (9, 2)
 
     try:
         best_path, best_length = aco.run(start=start_node, end=end_node)
