@@ -1,7 +1,3 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 from utils.load_state_graph import load_state_graph
 from src.ant_colony import AntColony
 
