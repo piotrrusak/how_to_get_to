@@ -2,7 +2,7 @@ import pygame
 
 # README XD
 # w skrócie możesz sobie rysować po mapie jak w paincie, koordynaty są zapisywane w pamięci
-# klawisze: S - zapisz to co narysowałeś do pliku (tak, uwzględniłem to, że (0,0) jest w lewym dolnym rogu)
+# klawisze: S - zapisz to co narysowałeś do pliku
 # D - usuń z mapy to co nabazgrałeś, F - zwiększ counter o 1 (nazwa pliku to "out_{counter}.txt")
 # lewy myszki - rysuj w danym punkcie, prawy - wykasuj
 # miłej zabawy
@@ -29,7 +29,6 @@ def color_square(x, y):
 def save(coords, filename="out.txt"):
     with open(filename, "w") as f:
         for x, y in coords:
-            y = HEIGHT // SQUARE_SIZE - y
             f.write(f"({x},{y}),\n")
 
 def main():
@@ -71,7 +70,6 @@ def main():
                         print("File name changed to " + filename)
                     case pygame.K_SPACE:
                         smooth_coloring = not smooth_coloring
-
 
         if smooth_coloring:
             x, y = pygame.mouse.get_pos()
