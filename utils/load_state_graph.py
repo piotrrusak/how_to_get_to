@@ -18,9 +18,10 @@ def load_state_graph(lines, starting_times):
     for key in H.keys():
         H[key].sort(key=lambda x: x[1])
         for i in range(1, len(H[key])):
-            _, t1 = H[key][i - 1]
-            _, t2 = H[key][i]
-            graph[((key, t1), (key, t2))] = t2 - t1
+            l1, t1 = H[key][i - 1]
+            l2, t2 = H[key][i]
+            graph[((key, t1, l1), (key, t2, l2))] = t2 - t1
+            # graph[((key, t1), (key, t2))] = t2 - t1
 
     for i in range(len(lines)):
         for st in starting_times[i]:
@@ -30,8 +31,13 @@ def load_state_graph(lines, starting_times):
                 u, _ = lines[i][tail]
                 v, f = lines[i][head]
                 if f == 1:
-                    graph[((u, st + tail), (v, st + head))] = (st+head)-(st+tail)
+                    graph[((u, st + tail, i), (v, st + head, i))] = (st+head)-(st+tail)
+                    # graph[((u, st + tail), (v, st + head))] = (st+head)-(st+tail)
                     tail = head
                 head += 1
+
+    # print()
+    # for _ in graph :
+    #     print(_, graph[_])
 
     return graph
