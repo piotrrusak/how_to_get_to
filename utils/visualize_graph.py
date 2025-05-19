@@ -8,15 +8,15 @@ def nested_defaultdict(depth = 1, default_value = None):
     return defaultdict(lambda: nested_defaultdict(depth - 1, default_value))
 
 
-MARGIN = 100
+MARGIN = 10
 
 SCREEN_WIDTH = 2000
 SCREEN_HEIGHT = 2000
 
-BASE_LINE_WIDTH = 5
+BASE_LINE_WIDTH = 3
 WIDTH_MULTIPLIER = 2
 
-BASE_CIRCLE_RADIUS = 10
+BASE_CIRCLE_RADIUS = 5
 COLORED_CIRCLE_RADIUS = BASE_CIRCLE_RADIUS * WIDTH_MULTIPLIER
 
 COLORED_LINE_WIDTH = BASE_LINE_WIDTH * WIDTH_MULTIPLIER
@@ -131,13 +131,12 @@ def visualize_map(lines, colors, path = None):
                 y1 = point_1[1] * cell_size + MARGIN + (0 if is_vertical else k * colored_width / 2)
                 x2 = point_2[0] * cell_size + MARGIN + (k * colored_width / 2 if is_vertical else 0)
                 y2 = point_2[1] * cell_size + MARGIN + (0 if is_vertical else k * colored_width / 2)
-                
                 pygame.draw.line(
                     static_image,
                     color if color_id in important_colors else dim_color(color),
-                    (x1, y1),
-                    (x2, y2),
-                    colored_width
+                    (int(x1), int(y1)),
+                    (int(x2), int(y2)),
+                    int(colored_width)
                 )
                 i += 1
         else :
@@ -146,14 +145,16 @@ def visualize_map(lines, colors, path = None):
                                 (point_2[0] * cell_size + MARGIN, point_2[1] * cell_size + MARGIN),
                                 BASE_LINE_WIDTH)
     
+    invisible_points = []
+
     if not no_dimming_condition :
         prev_point = path[0][0]
         prev_color_code = path[0][1]
-
-
+        
         for i in range(1, len(path)) :
             entry = path[i]
             point, _ = entry
+            # print(prev_color_code)
 
             if point != prev_point :
                 grid_lines[prev_point][point][1].append(prev_color_code)
