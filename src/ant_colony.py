@@ -30,7 +30,7 @@ class AntColony:
         prev_found = float('inf')
 
         i = 0
-        while i < self.n_iterations : # or best_path is None:
+        while i < self.n_iterations or best_path is None:
             all_paths = self.generate_paths(start, end, start_time)
             current_best_length = float('inf')
             if all_paths:
@@ -74,6 +74,7 @@ class AntColony:
         for t in range(TIME_MAX) :
             if t + start_time > TIME_MAX :
                 t -= TIME_MAX
+                print("NEXT DAY ALERT")
             for i in range(self.num_lines) :
                 current = (start, t + start_time, i)
                 if current in self.nodes :

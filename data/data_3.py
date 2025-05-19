@@ -2167,7 +2167,7 @@ lines = [
 ((7,43), True),
 ]
 ]
-n = 3
+n = 15
 starting_times = [
     [5 * i for i in range(n)],
     [6 * i for i in range(n)],

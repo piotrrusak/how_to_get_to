@@ -12,11 +12,18 @@ if __name__ == "__main__":
 
     state_graph = load_state_graph(lines, starting_times)
 
-    aco = AntColony(state_graph, len(lines), n_ants=10, n_iterations=200, alpha=1.0, beta=5.0, evaporation_rate=0.3, q=500)
+    aco = AntColony(state_graph,
+                    len(lines),
+                    n_ants=50,
+                    n_iterations=200,
+                    alpha=2.0,
+                    beta=0.1,
+                    evaporation_rate=0.3,
+                    q=15)
 
     start_node = (21, 61)
-    end_node = (30, 74)
-    start_time = 0
+    end_node = (95, 48)
+    start_time = 60
 
     try:
         # visualize_map(lines, colors)
@@ -25,7 +32,7 @@ if __name__ == "__main__":
 
         print("\nBest path found:")
         for point in final_path:
-            print_color(point[:-1], color=colors[point[2]])
+            print_color(point, color=colors[point[2]])
         print(f"Path length: {best_length} minutes")
         
         full_path = find_full_path(final_path, lines)
