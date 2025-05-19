@@ -22,9 +22,9 @@ if __name__ == "__main__":
                     evaporation_rate=0.3,
                     q=15)
 
-    start_node = (2, 50)
-    end_node = (90, 0)
-    start_time = 60
+    start_node = (10, 29)
+    end_node = (58, 27)
+    start_time = 0
 
     try:
         visualize_map(lines, colors)
