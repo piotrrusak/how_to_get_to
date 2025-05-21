@@ -12,7 +12,7 @@ from copy import copy
 pygame.init()
 
 clock = pygame.time.Clock()
-MAP = pygame.image.load('kielce.jpg')
+MAP = pygame.image.load('utils/kielce.jpg')
 SIZE = MAP.get_size()
 WINDOW_SIZE = SIZE[0] * 2, SIZE[1] * 2
 WIDTH, HEIGHT = WINDOW_SIZE
