@@ -1,4 +1,6 @@
-storage = [[
+# Kielce 80x80
+
+lines = [[
 ((57,82), True),
 ((56,82), False),
 ((56,81), False),
@@ -1265,4 +1267,52 @@ storage = [[
 ((41,65), False),
 ((41,66), True),
 ]
+]
+
+
+n = 15
+starting_times = [
+    [5 * i for i in range(n)],
+    [6 * i for i in range(n)],
+    [7 * i for i in range(n)],
+    [8 * i for i in range(n)],
+    [5 * i for i in range(n)],
+    [6 * i for i in range(n)],
+    [7 * i for i in range(n)],
+    [8 * i for i in range(n)],
+    [5 * i for i in range(n)],
+    [6 * i for i in range(n)],
+    [7 * i for i in range(n)],
+]
+
+RED = 255, 0, 0
+GREEN = 0, 255, 0
+BLUE = 0, 0, 255
+YELLOW = 255, 255, 0
+CYAN = 0, 255, 255
+MAGENTA = 255, 0, 255
+ORANGE = 255, 128, 0
+VIOLET = 128, 0, 255
+IDK_1 = 128, 255, 0
+IDK_2 = 0, 255, 128
+IDK_3 = 0, 128, 255
+IDK_4 = 128, 128, 128
+IDK_5 = 128, 0, 128
+BROWN = 139, 69, 19
+PINK = 255, 192, 203
+LIME = 191, 255, 0
+TEAL = 0, 128, 128
+NAVY = 0, 0, 128
+OLIVE = 128, 128, 0
+TURQUOISE = 64, 224, 208
+BEIGE = 245, 245, 220
+SALMON = 250, 128, 114
+GOLD = 255, 215, 0
+SILVER = 192, 192, 192
+MAROON = 128, 0, 0
+SKY_BLUE = 135, 206, 235
+
+colors = [
+    RED, GREEN, BLUE, YELLOW, CYAN, MAGENTA, ORANGE, VIOLET, IDK_1, IDK_2, IDK_3, IDK_4, IDK_5,
+    BROWN, PINK, LIME, TEAL, NAVY, OLIVE, TURQUOISE, BEIGE, SALMON, GOLD, SILVER, MAROON, SKY_BLUE
 ]
