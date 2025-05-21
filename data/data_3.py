@@ -1,3 +1,5 @@
+# 100x100 grid that represents Cracow
+
 lines = [
 [
 ((0,27), False),
