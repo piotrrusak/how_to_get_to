@@ -33,7 +33,9 @@ def find_full_path(path, lines) :
             if point[0] == start_point :
                 add = True
             if add :
+
                 full_path.append((point[0], line))
+
             if point[0] == end_point :
                 break
 
