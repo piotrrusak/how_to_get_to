@@ -1,6 +1,7 @@
 import pygame
 import storage
 from copy import copy
+import sys
 
 # README XD
 # w skrócie możesz sobie rysować po mapie jak w paincie, koordynaty są zapisywane w pamięci
@@ -12,16 +13,22 @@ from copy import copy
 pygame.init()
 
 clock = pygame.time.Clock()
-MAP = pygame.image.load('krakow.png')
+MAP = pygame.image.load('katowice.png')
 SIZE = MAP.get_size()
-WINDOW_SIZE = SIZE[0] * 2, SIZE[1] * 2
+
+WINDOW_SIZE = SIZE[0], SIZE[1]
 WIDTH, HEIGHT = WINDOW_SIZE
+
+if len(sys.argv) > 1:
+    scale = float(sys.argv[1])
+    WINDOW_SIZE = SIZE[0], SIZE[1]
+    WIDTH, HEIGHT = WINDOW_SIZE
 
 SCALED_MAP = pygame.transform.scale(MAP, WINDOW_SIZE)
 
 window = pygame.display.set_mode(WINDOW_SIZE)
 
-SQUARE_SIZE = WIDTH // 100
+SQUARE_SIZE = WIDTH // 150
 PANEL_SIZE = WIDTH // 4
 
 RED = 255, 0, 0
