@@ -3,13 +3,14 @@ from src.ant_colony import AntColony
 import os
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 
-from data.data_4 import starting_times, lines, colors
+from data.data_3 import starting_times, lines, colors
 from utils.path_utils import beautify_path, find_full_path
 from utils.visualize_graph import visualize_map
 from utils.printing import print_color
+from utils.impute import impute_lines
 
 if __name__ == "__main__":
-
+    lines = impute_lines(lines)
     state_graph = load_state_graph(lines, starting_times)
 
     aco = AntColony(state_graph,
@@ -21,9 +22,9 @@ if __name__ == "__main__":
                     evaporation_rate=0.3,
                     q=15)
 
-    start_node = (57, 82)
-    end_node = (45, 2)
-    start_time = 60
+    start_node = (10, 29)
+    end_node = (58, 27)
+    start_time = 0
 
     try:
         visualize_map(lines, colors)

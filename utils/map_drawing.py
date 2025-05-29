@@ -12,7 +12,7 @@ from copy import copy
 pygame.init()
 
 clock = pygame.time.Clock()
-MAP = pygame.image.load('utils/kielce.jpg')
+MAP = pygame.image.load('krakow.png')
 SIZE = MAP.get_size()
 WINDOW_SIZE = SIZE[0] * 2, SIZE[1] * 2
 WIDTH, HEIGHT = WINDOW_SIZE
@@ -21,7 +21,7 @@ SCALED_MAP = pygame.transform.scale(MAP, WINDOW_SIZE)
 
 window = pygame.display.set_mode(WINDOW_SIZE)
 
-SQUARE_SIZE = WIDTH // 80
+SQUARE_SIZE = WIDTH // 100
 PANEL_SIZE = WIDTH // 4
 
 RED = 255, 0, 0
