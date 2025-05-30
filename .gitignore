@@ -3,3 +3,11 @@ __pycache__/
 .idea/
 **/.idea/
 utils/out*.txt
+docs/*.aux
+docs/*.fdb_latexmk
+docs/*.log
+docs/*.out
+docs/*.fls
+docs/*.toc
+docs/*.synctex.gz
+utils/out*.txt
