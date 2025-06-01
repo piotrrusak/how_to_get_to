@@ -8,7 +8,15 @@
 \contentsline {subsubsection}{\numberline {2.1.4}Funkcja trasy}{2}{subsubsection.2.1.4}%
 \contentsline {subsubsection}{\numberline {2.1.5}Funkcja celu}{3}{subsubsection.2.1.5}%
 \contentsline {subsection}{\numberline {2.2}Szukana wartość}{3}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Opis algorytmu}{3}{section.3}%
-\contentsline {section}{\numberline {4}Aplikacja}{3}{section.4}%
-\contentsline {section}{\numberline {5}Eksperymenty}{3}{section.5}%
-\contentsline {section}{\numberline {6}Podsumowanie}{3}{section.6}%
+\contentsline {subsection}{\numberline {2.3}Możliwe zastosowania}{3}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Opis algorytmu}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Idea algorytmu}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Adaptacja algorytmu}{4}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Reprezentacja rozwiązania}{4}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Opis procedur}{4}{subsubsection.3.2.2}%
+\contentsline {section}{\numberline {4}Aplikacja}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Wymagania wstępne}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Charakterystyka danych wejściowych}{4}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Parametry wejściowe}{5}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Eksperymenty}{5}{section.5}%
+\contentsline {section}{\numberline {6}Podsumowanie}{5}{section.6}%

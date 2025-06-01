@@ -42,9 +42,12 @@ zachodzi zależność
 \[\forall\;\left\{(x_u, y_u), (x_v, y_v)\right\} \in E\;\; |x_u - x_v| + |y_u - y_v| = 1\]
 To oznacza, że sąsiednie wierzchołki różnią się dokładnie o jedną współrzędną, co odpowiada ruchowi w górę, w dół, w lewo lub w prawo.
 
-\subsubsection{Zbiór linii komunikacyjnych}
-Każda linia komunikacyjna jest opisana jako krotka \((n, S)\),
-gdzie \(n\) to numer linii, a \(S = \{(v, f) : v\in V, f\in\{0, 1\}\}\) to zbiór par wierzchołków i flagi określające czy dany punkt jest przystankiem czy nie.
+\subsubsection{Zbiór linii komunikacyjnych}\label{subsec:lines}
+Każda linia komunikacyjna jest opisana jako zbiór \(S_n\),
+gdzie \(n\) to numer linii, a \(S \subset V\times\{0, 1\}\) to zbiór par wierzchołków i flagi określające czy dany punkt jest przystankiem czy nie.
+Zakładamy, że punkt \((v, 0)\in S_n\) może występować kilka razy w zbiorze \(S_n\), czyli
+może przejeżdżać przez ten sam punkt kilka razy w różnych momentach czasowych. Natomiast \((v, 1)\in S_n\) występuje tylko raz.
+Oznacza to, że dana linia nie zatrzymuje się na danym przystanku więcej niż raz.
 
 \subsubsection{Harmonogramy odjazdu}
 Dla danego przystanku \(v\) definiujemy zbiór \[H_v = \left\{(n_0, h_0), (n_1, h_1), \dots, (n_n, h_n)\right\}\]
@@ -54,28 +57,71 @@ określającą harmonogram odjazdu, gdzie \(n\) oznacza liczbę odjazdów z przy
 \subsubsection{Funkcja trasy}
 Jeśli przez \(N\) oznaczymy liczbę tras z z przystanku \(v_0\) do przystanku \(v_m\), to \(k\)-tą z nich definiujemy jako sekwencję
 \[P_k = \left\{(v_0, v_1^k, n_0^k), (v_1^k, v_2^k, n_1^k), \ldots, (v_{m - 1}^k, v_{m}, n_{m - 1}^k)\right\}\]
-gdzie \(m\) to liczba przystanków na trasie, \(v_0, v_1^k, \dots, v_{m - 1}^k v_m\) to kolejne przystanki, a \(n_i^k\) to linia komunikacyjna, którą jedziemy z przystanku \(v_i\) do przystanku \(v_{i + 1}\).
+gdzie \(m\) to liczba przystanków na trasie, \(v_0, v_1^k, \dots, v_{m - 1}^k v_m\) to kolejne przystanki, a \(n_i^k\) to linia komunikacyjna, którą jedziemy z przystanku \(v_i^k\) do przystanku \(v_{i + 1}^k\).
 Definiujemy funkcję
 \[f(v_0, v_m) = \left\{P_1, P_2, \dots, P_N\right\}\]
 zwracającą zbiór wszystkich tras z przystanku \(v_0\) do przystanku \(v_m\) rozpoczynających się w chwili \(t_0\).
 
 \subsubsection{Funkcja celu}
-Niech \(t(n, v, t_0) = \min(\{h - t_0 : (n, h)\in H_v, h \geq t_0\})\) oznacza czas oczekiwania na linię \(n\) będąc na przystanku \(v\)
-w chwili \(t_0\), a \(d(n, u, v)\) oznacza czas przejazdu linią \(n\) z przystanku \(u\) do przystanku \(v\). Wtedy funkcja celu
-dla danej trasy jest zdefiniowana jako
+Niech \[t(n, v, t_0) = \min(\{h - t_0 : (n, h)\in H_v, h \geq t_0\})\] oznacza czas oczekiwania na linię \(n\) będąc na przystanku \(v\)
+w chwili \(t_0\), a \[d(n, u, v) = \min(\{h_v - h_u : (n, h_u)\in H_u, (n, h_v)\in H_v, h_v > h_u\})\] oznacza czas przejazdu linią \(n\) z przystanku \(u\) do przystanku \(v\). Wtedy funkcja celu
+dla danej trasy \(P = \{(v_0, v_1, n_0),\dots,(v_{m - 1}, v_m, n_{m - 1})\}\in f(v_0, v_m)\) jest zdefiniowana jako
 \[
-    T(P, t_0) = \sum_{i = 0}^{m - 1}(t(n_i, v_i, t_i) + d(n_i, v_i, v_{i + 1}))
+    T(P, t_0) = \sum_{i = 0}^{m - 1}\left(t(n_i, v_i, t_i) + d(n_i, v_i, v_{i + 1})\right)
 \]
-gdzie \(t_i\) to czas przyjazdu na przystanek \(v_i\) oraz \[P = \{(v_0, v_1, n_0),\dots,(v_{m - 1}, v_m, n_{m - 1})\}\in f(v_0, v_m)\]
+gdzie \(t_i\) to czas przyjazdu na przystanek \(v_i\).
 
 \subsection{Szukana wartość}
-Szukana przez nas wartość to trasa \(P_{opt}\) z przystanku \(v_0\) do przystanku \(v_m\) zaczynając o godzinie \(t_0\)
+Szukana przez nas wartość to trasa \(P_{opt}\in f(v_0, v_m)\) z przystanku \(v_0\in V\) do \(v_m\in V\) zaczynając o godzinie \(t_0\)
 o minimalnej wartości funkcji celu czyli
 \[P_{opt} = \operatorname*{\arg\,\min}_{P\in f(v_0, v_m)} T(P, t_0)\]
 
+\subsection{Możliwe zastosowania}
+Zastosowanie algorytmu mrówkowego do problemu komunikacji miejskiej może być przydatne w wielu sytuacjach, takich jak:
+\begin{itemize}
+    \item Planowanie codziennych dojazdów do pracy lub szkoły, uwzględniając czas odjazdu pojazdów i przesiadek.
+    \item Organizacja transportu publicznego w miastach, aby zoptymalizować trasy i czasy przejazdu.
+    \item Pomoc turystom w znalezieniu najdogodniejszej trasy zwiedzania miasta z uwzględnieniem komunikacji miejskiej.
+\end{itemize}
+
 \section{Opis algorytmu}
 
+\subsection{Idea algorytmu}
+Problem znalezienia najlepszej trasy przejazdu z przystanku A do przystanku B w sieci linii komunikacyjnych można rozwiązać
+przy pomocy algorytmu mrówkowego, który jest inspirowany zachowaniem mrówek w poszukiwaniu najkrótszej drogi do źródła pożywienia.
+Algorytm ten polega na symulacji ruchu mrówek, które eksplorują graf komunikacyjny, pozostawiając feromony na krawędziach,
+co pozwala innym mrówkom na znalezienie lepszej trasy. W kontekście komunikacji miejskiej, mrówki będą reprezentować
+użytkowników transportu publicznego, którzy szukają optymalnej trasy przejazdu, uwzględniając czas odjazdu pojazdów,
+czas przejazdu pomiędzy przystankami i możliwość przesiadek.
+
+\subsection{Adaptacja algorytmu}
+
+\subsubsection{Reprezentacja rozwiązania}
+Rozwiązaniem naszego problemu jest sekwencja krotek postaci \((v, t, n)\), gdzie \(n\) to numer linii komunikacyjnej i
+\((v, 1)\in S_n\) to przystanek, na którym się znajdujemy w chwili \(t\). Krotki te są uporządkowane rosnąco według czasu \(t\) i reprezentują
+kolejne przystanki na trasie, na których mrówka się zatrzymuje lub wsiada do pojazdu komunikacji miejskiej.
+Rozwiązaniem początkowym jest wartość pusta \texttt{None}.
+
+\subsubsection{Opis procedur}
+Pierwszym krokiem jest wygenerowanie struktury danych zawierającej informację o czasie przejazdu pomiędzy każdymi
+kolejnymi przystankami dla każdej linii komunikacyjnej jak i czasów oczekiwania na przystankach na każdą linię.
+
 \section{Aplikacja}
+\subsection{Wymagania wstępne}
+Aplikacja jest napisana w języku Python i wymaga zainstalowania biblioteki \texttt{pygame} do obsługi interfejsu graficznego.
+Uruchomienie aplikacji odbywa się poprzez wykonanie polecenia:
+\begin{verbatim}
+    python3 run.py
+\end{verbatim}
+w katalogu głównym projektu.
+
+\subsection{Charakterystyka danych wejściowych}
+Dane wejściowe do aplikacji są trzymane w katalogu \texttt{data} i są to pliki pythonowe z rozszerzeniem \texttt{.py}.
+Każdy plik zawiera listę linii komunikacyjnych zgodnych z definicją zbioru \(S_n\) z sekcji (\ref{subsec:lines}). Plik ten
+również zawiera listę godzin odjazdów z początkowego przystanku dla każdej linii komunikacyjnej. Pełny harmonogram odjazdu
+jest generowany na etapie wykonania programu. Dodatkowo plik zawiera listę kolorów, które będą używane do rysowania linii komunikacyjnych.
+
+\subsection{Parametry wejściowe}
 
 \section{Eksperymenty}
 
