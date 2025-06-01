@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.1)  1 JUN 2025 22:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.1)  1 JUN 2025 23:32
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -341,27 +341,32 @@ l.26 \newpage
 LaTeX Font Info:    Trying to load font information for OT4+cmtt on input line 103.
  (/usr/share/texlive/texmf-dist/tex/latex/polski/ot4cmtt.fd
 File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
-) [4{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/pltt.enc}] [5] (./main.aux)
+) [4{/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/pltt.enc}] [5] [6]
+Overfull \hbox (1.08836pt too wide) in paragraph at lines 196--197
+[]\OT4/cmr/m/n/10 Piotr Ru-sak: Im-ple-men-ta-cja al-go-rytmu mrów-ko-wego, prze-pro-wa-dze-nie eks-
+ []
+
+[7] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CBADFB0A5DE9B1A7A410D290E4140578;2966.
+(rerunfilecheck)             Checksum: 24AC228326B366942953D1781766D790;3732.
  ) 
 Here is how much of TeX's memory you used:
- 9753 strings out of 474222
- 152744 string characters out of 5748734
+ 9767 strings out of 474222
+ 152956 string characters out of 5748734
  1932975 words of memory out of 5000000
- 31850 multiletter control sequences out of 15000+600000
+ 31857 multiletter control sequences out of 15000+600000
  571823 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,338b,473s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,79p,338b,519s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/plsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/pl/pltt10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (6 pages, 113228 bytes).
+Output written on main.pdf (8 pages, 124401 bytes).
 PDF statistics:
- 228 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 266 PDF objects out of 1000 (max. 8388607)
+ 223 compressed objects within 3 object streams
+ 35 named destinations out of 1000 (max. 500000)
+ 209 words of extra memory for PDF output out of 10000 (max. 10000000)
 

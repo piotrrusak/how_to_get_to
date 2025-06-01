@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1748808727.2255 "/home/antoni-kucharski/STUDIA/SEM6/BO/how_to_get_to/docs/main.tex" "main.pdf" "main" 1748808727.82225 0
+["pdflatex"] 1748813571.26335 "/home/antoni-kucharski/STUDIA/SEM6/BO/how_to_get_to/docs/main.tex" "main.pdf" "main" 1748813571.99054 0
   "/etc/texmf/web2c/texmf.cnf" 1722504398.58901 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/antoni-kucharski/STUDIA/SEM6/BO/how_to_get_to/docs/main.tex" 1748808726.1716 7081 e69de0fad549a1bb9ddc9ce5385fc897 ""
+  "/home/antoni-kucharski/STUDIA/SEM6/BO/how_to_get_to/docs/main.tex" 1748813570.46742 12023 cb1c74dfe7c23b9ddaf77acb325b83ca ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plme.enc" 1136849721 3126 59f33ff3e396436ebc36f4e7b444d5c4 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plmi.enc" 1136849721 2005 f094775651a1386335c158fb632529f1 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/pl/plms.enc" 1136849721 2468 3f9e2f3088bcf5b581dfc367d71e7d95 ""
@@ -110,10 +110,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1722504417.21694 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1722504503 8212637 d0669a996adfa6690dbf11508f65739e ""
-  "main.aux" 1748808727.75954 2954 cdddd7c39556958139008349be31049d "pdflatex"
-  "main.out" 1748808727.76054 2966 cbadfb0a5de9b1a7a410d290e4140578 "pdflatex"
-  "main.tex" 1748808726.1716 7081 e69de0fad549a1bb9ddc9ce5385fc897 ""
-  "main.toc" 1748808727.76054 1772 1cdf7636823c22f19552b6a3d24710a7 "pdflatex"
+  "main.aux" 1748813571.89141 3688 41780dceeb76f7a21a6ac78eaa4d3d50 "pdflatex"
+  "main.out" 1748813571.89241 3732 24ac228326b366942953d1781766d790 "pdflatex"
+  "main.tex" 1748813570.46742 12023 cb1c74dfe7c23b9ddaf77acb325b83ca ""
+  "main.toc" 1748813571.89241 2196 86b9e903c928dee6f0046fa8be5e8d4d "pdflatex"
   (generated)
   "main.aux"
   "main.log"

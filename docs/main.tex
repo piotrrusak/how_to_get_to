@@ -96,7 +96,7 @@ czas przejazdu pomiędzy przystankami i możliwość przesiadek.
 
 \subsection{Adaptacja algorytmu}
 
-\subsubsection{Reprezentacja rozwiązania}
+\subsubsection{Reprezentacja rozwiązania}\label{subsec:solution_representation}
 Rozwiązaniem naszego problemu jest sekwencja krotek postaci \((v, t, n)\), gdzie \(n\) to numer linii komunikacyjnej i
 \((v, 1)\in S_n\) to przystanek, na którym się znajdujemy w chwili \(t\). Krotki te są uporządkowane rosnąco według czasu \(t\) i reprezentują
 kolejne przystanki na trasie, na których mrówka się zatrzymuje lub wsiada do pojazdu komunikacji miejskiej.
@@ -105,6 +105,28 @@ Rozwiązaniem początkowym jest wartość pusta \texttt{None}.
 \subsubsection{Opis procedur}
 Pierwszym krokiem jest wygenerowanie struktury danych zawierającej informację o czasie przejazdu pomiędzy każdymi
 kolejnymi przystankami dla każdej linii komunikacyjnej jak i czasów oczekiwania na przystankach na każdą linię.
+
+Następnie uruchamiamy pętlę, która będzie wykonywana przez określoną liczbę iteracji. W każdej iteracji
+algorytm generuje tyle tras ile mamy mrówek, które będą symulowane. Dla każdej mrówki póki nie znajdzie się w przystanku końcowym
+algorytm waży krawędzie wychodzące z przystanku, na którym się znajduje, i wybiera jedną z nich
+na podstawie prawdopodobieństwa, które jest obliczane na podstawie ilości feromonu na krawędzi oraz odległości do przystanku końcowego.
+Dokładny wzór na wagę sąsiada jest następujący:
+\[
+    w = \frac{p^\alpha}{d^\beta}
+\],
+gdzie \(p\) to ilość feromonu na krawędzi, \(d\) to odległość do przystanku końcowego, a \(\alpha\) i \(\beta\) to metaparametry wpływające na wagę krawędzi.
+
+Następnie wybierana jest trasa o najmniejszym koszcie przejazdu, czyli o najmniejszym czasie przejazdu.
+Po przejściu wszystkich mrówek, algorytm aktualizuje ilość feromonu na krawędziach poprzez
+parowanie feromonu na wszystkich krawędziach (mnożąc je przez \(1 - r\), gdzie \(r\) to współczynnik parowania feromonu)
+i dodanie do nich ilości feromonu pozostawionego przez mrówki, które znalazły trasę. Ilość feromonu pozostawionego przez mrówki jest obliczana jako
+\[
+    p = \frac{q}{T(P, t_0)}
+\]
+gdzie \(q\) to stała określająca ilość feromonu, który mrówki zostawiają na krawędziach grafu po znalezieniu trasy, a \(T(P, t_0)\) to czas przejazdu znalezionej trasy.
+
+\subsection{Pseudokod algorytmu}
+
 
 \section{Aplikacja}
 \subsection{Wymagania wstępne}
@@ -121,10 +143,59 @@ Każdy plik zawiera listę linii komunikacyjnych zgodnych z definicją zbioru \(
 również zawiera listę godzin odjazdów z początkowego przystanku dla każdej linii komunikacyjnej. Pełny harmonogram odjazdu
 jest generowany na etapie wykonania programu. Dodatkowo plik zawiera listę kolorów, które będą używane do rysowania linii komunikacyjnych.
 
-\subsection{Parametry wejściowe}
+\subsection{Ustawianie parametrów}
+W celu ustawienia mapy i linii komunikacyjnych należy z wybranego pliku w katalogu \texttt{data} zaimportować zmienne
+\begin{itemize}
+    \item \texttt{lines}
+    \item \texttt{starting\_times}
+    \item \texttt{colors}
+\end{itemize}
+nic więcej nie jest wymagane.
+
+Ustawienie przystanku początkowego i końcowego odbywa się poprzez przypisanie do zmiennych \texttt{start\_stop} i \texttt{end\_stop} krotek
+reprezentujących współrzędne przystanków w postaci \((x, y)\). \textbf{Punkty muszą być przystankami komunikacyjnymi!} To oznacza, że
+musi istnieć linia komunikacyjna w odpowiednim pliku z \texttt{data}, która zawiera ten punkt z flagą \texttt{True}. Dodatkowo
+można ustawić czas rozpoczęcia podróży poprzez przypisanie wartości do zmiennej \texttt{start\_time} w formie liczby całkowitej.
+
+Dodatkowo można ustawić parametry algorytmu mrówkowego poprzez przypisanie wartości do następujących zmiennych w konstruktorze klasy \texttt{AntColony}:
+\begin{itemize}
+    \item \texttt{n\_ants} --- liczba mrówek, które będą symulowane w algorytmie,
+    \item \texttt{n\_iterations} --- liczba iteracji algorytmu, czyli liczba cykli, w których mrówki będą eksplorować graf,
+    \item \texttt{evaporation\_rate} --- współczynnik parowania feromonów, który określa, jak szybko feromony znikają z krawędzi grafu,
+    \item \texttt{alpha} --- współczynnik wpływu feromonów na wybór trasy przez mrówki,
+    \item \texttt{beta} --- współczynnik wpływu odległości na wybór trasy przez mrówki,
+    \item \texttt{q} --- stała określająca ilość feromonu, który mrówki zostawiają na krawędziach grafu po znalezieniu trasy,
+\end{itemize}
+
+\subsection{Interpretacja logów i wyników}
+Wyniki działania algorytmu mrówkowego są wyświetlane w konsoli w postaci logów, które zawierają informacje o obecnej iteracji
+oraz najlepszej trasie znalezionej do tej pory. Logi te zawierają jedynie czas potrzebny do pokonania znalezionej trasy.
+
+Wynikiem algorytmu jest rozwiązanie opisane w sekcji (\ref{subsec:solution_representation}), czyli sekwencja krotek
+reprezentujących przystanki, na których mrówka się zatrzymuje lub wsiada do pojazdu komunikacji miejskiej.
 
 \section{Eksperymenty}
+Do napisania po eksperymentach Piotra Rusaka.
 
 \section{Podsumowanie}
+\subsection{Wnioski}
+Algorytm mrówkowy okazał się skuteczny w znajdywaniu optymalnych tras przejazdu w sieci linii komunikacyjnych.
+Mimo probabilistycznego charakteru algorytmu, udało się znaleźć trasy o minimalnym czasie przejazdu.
+\subsection{Możliwości rozwoju}
+Algorytm mrówkowy może być dodatkowo rozszerzony o uwzględnienie dodatkowych czynników, takich jak:
+\begin{itemize}
+    \item Ruch drogowy i jego wpływ na czas przejazdu.
+    \item Preferencje użytkowników dotyczące komfortu podróży, takie jak unikanie przesiadek.
+    \item Dodanie możliwości pokonania trasy pieszo lub rowerem.
+\end{itemize}
+
+\subsection{Podział zadań}
+Podział zadań w projekcie był następujący:
+\begin{itemize}
+    \item Antoni Kucharski: Implementacja narzędzia do tworzenia mapy linii komunikacyjnych, dokumentacja projektu.
+    \item Piotr Rusak: Implementacja algorytmu mrówkowego, przeprowadzenie eksperymentów.
+    \item Paweł Prus: Implementacja algorymu mrówkowego i interfejsu graficznego aplikacji.
+    \item Kacper Garus: Wytworzenie linii komunikacyjnych i harmonogramów, pomoc przy dokumentacji.
+\end{itemize}
 
 \end{document}
