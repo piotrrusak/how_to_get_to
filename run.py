@@ -3,7 +3,7 @@ from src.ant_colony import AntColony
 import os
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 
-from data.data_3 import starting_times, lines, colors
+from data.data_5 import starting_times, lines, colors
 from utils.path_utils import beautify_path, find_full_path
 from utils.visualize_graph import visualize_map
 from utils.printing import print_color
@@ -22,8 +22,8 @@ if __name__ == "__main__":
                     evaporation_rate=0.3,
                     q=15)
 
-    start_node = (10, 29)
-    end_node = (58, 27)
+    start_node = (49, 119)
+    end_node = (47, 58)
     start_time = 0
 
     try:
