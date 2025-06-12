@@ -10,8 +10,8 @@ def nested_defaultdict(depth = 1, default_value = None):
 
 MARGIN = 20
 
-SCREEN_WIDTH = 2000
-SCREEN_HEIGHT = 2000
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT =1000
 
 
 BASE_CIRCLE_RADIUS = 4

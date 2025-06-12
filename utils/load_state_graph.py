@@ -2,9 +2,6 @@ from collections import defaultdict
 
 def load_state_graph(lines, starting_times):
 
-    n = 10
-    V = set((i, j) for i in range(n) for j in range(n))
-
     graph = {}
     H = defaultdict(list)
 

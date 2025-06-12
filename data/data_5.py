@@ -1,3 +1,5 @@
+map_size = 150
+
 lines = [
 # 61
 [
@@ -2722,7 +2724,7 @@ lines = [
 ]
 ]
 
-n = 15
+n = 50
 starting_times = [
     [5 * i for i in range(n)],
     [6 * i for i in range(n)],

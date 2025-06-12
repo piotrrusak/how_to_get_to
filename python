@@ -1,10 +1,12 @@
+(49, 119)
+(47, 58)
 from utils.load_state_graph import load_state_graph
 from src.ant_colony import AntColony
 import numpy as np
 import os
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 
-from data.data_5 import starting_times, lines, colors
+from data.data_5 import starting_times, lines, colors, map_size
 from utils.path_utils import beautify_path, find_full_path
 from utils.visualize_graph import visualize_map
 from utils.printing import print_color
@@ -17,25 +19,25 @@ if __name__ == "__main__":
     lines = impute_lines(lines)
     state_graph = load_state_graph(lines, starting_times)
 
-    input_start = input().split()
-    sx, sy = input_start[0][1:-1], input_start[1][0:-1]
-    input_end = input().split()
-    ex, ey = input_end[0][1:-1], input_end[1][0:-1]
+    sx, sy, ex, ey = input().split()
+
+    print(sx, sy, ex, ey)
 
     start_node = (int(sx), int(sy))
     end_node = (int(ex), int(ey))
 
     aco = AntColony(state_graph,
                     len(lines),
-                    n_ants=25,
-                    n_iterations=np.power(np.log2(abs(int(ex) - int(sx)) + abs(int(ey) - int(ex))), 1),
+                    n_ants=20,
+                    n_iterations=np.sqrt(abs(int(ex) - int(sx)) + abs(int(ey) - int(ex))),
                     alpha=2.0,
                     beta=0.1,
                     evaporation_rate=0.3,
                     q=15,
-                    transfer_factor=25)
+                    transfer_factor=3)
 
     try:
+        visualize_map(lines, colors)
         best_path, best_length = aco.run(start=start_node, end=end_node, start_time=start_time)
         final_path = beautify_path(best_path)
 
@@ -45,6 +47,6 @@ if __name__ == "__main__":
         print(f"Path length: {best_length} minutes")
         
         full_path = find_full_path(final_path, lines)
-        # visualize_map(lines, colors, full_path)
+        visualize_map(lines, colors, full_path)
     except ValueError as e:
         print(e)

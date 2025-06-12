@@ -6,9 +6,10 @@ from utils.printing import clear_last_line
 TIME_MAX = 1440
 
 class AntColony:
-    def __init__(self, graph, num_lines, n_ants, n_iterations, alpha, beta, evaporation_rate, q):
+    def __init__(self, graph, num_lines, n_ants, n_iterations, alpha, beta, evaporation_rate, q, transfer_factor):
         self.graph = graph
         self.num_lines = num_lines
+        self.transfer_factor = transfer_factor
 
         self.n_ants = n_ants
         self.n_iterations = n_iterations
@@ -68,7 +69,7 @@ class AntColony:
 
     def generate_path(self, start, end, start_time):
         visited = set([start])
-        current = (start, start_time, 3)
+        current = (start, start_time, -1)
         
         found = False
         for t in range(TIME_MAX) :
@@ -90,6 +91,7 @@ class AntColony:
         v = end
 
         while u != v:
+            _, _, line_num = current
             neighbors = self.get_neighbors(current)
             # print(f"Current: {current}, Neighbors: {neighbors}\n")
             neighbors = [n for n in neighbors if n not in visited]
@@ -102,6 +104,7 @@ class AntColony:
             total = 0.0
 
             for neighbor in neighbors:
+                _, _, neighbour_line_num = neighbor
                 pheromone = self.pheromones.get((current, neighbor), 1e-10)
                 # print(f"Pheromone for edge {current} -> {neighbor}: {pheromone}")
                 distance = self.graph.get((current, neighbor), float('inf'))
@@ -109,7 +112,10 @@ class AntColony:
                 if distance == 0:
                     distance = 1e-10
 
-                attraction = (pheromone ** self.alpha) * ((1.0 / distance) ** self.beta)
+                if line_num == neighbour_line_num:
+                    attraction = self.transfer_factor * (pheromone ** self.alpha) * ((1.0 / distance) ** self.beta)
+                else:
+                    attraction = (pheromone ** self.alpha) * ((1.0 / distance) ** self.beta)
                 probabilities.append(attraction)
                 total += attraction
 
